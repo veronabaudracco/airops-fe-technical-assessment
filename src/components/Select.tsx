@@ -21,6 +21,7 @@ export const Select = ({ value, onChange, options, placeholder = "Select", class
       <SelectPrimitive.Trigger
         className={cn(
           "flex h-8 items-center justify-between rounded-md border bg-white px-3 py-2 text-sm gap-2",
+          "focus:outline-none focus-visible:outline-none",
           className
         )}
       >
