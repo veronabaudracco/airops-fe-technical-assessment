@@ -15,7 +15,7 @@ export const SearchInput = ({ placeholder, value, onChange }: SearchInputProps) 
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="border-0 bg-transparent outline-none font-normal text-sm text-[#09090B] placeholder:text-gray-400 w-full md:w-[146px]"
+        className="border-0 bg-transparent outline-none font-normal text-sm text-[#09090B] placeholder:text-gray-400 w-full md:w-[146px] [&::-webkit-search-cancel-button]:cursor-pointer"
       />
     </div>
   )

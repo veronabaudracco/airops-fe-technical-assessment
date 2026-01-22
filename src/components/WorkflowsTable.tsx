@@ -96,18 +96,20 @@ const mapSortOptionToSortingState = (sortOption: SortOption): SortingState => {
 const getHeaderClassName = (header: Header<Workflow, unknown>, index: number) => {
   const baseClasses = 'h-14 text-left text-[14px] font-semibold text-[#09090B] border-b border-[rgba(9,9,11,0.08)]';
   const paddingClass = index === 1 ? 'px-2 py-4' : 'p-4';
+  const widthClass = header.column.id === 'name' ? 'w-1/2' : '';
   const hiddenClass = header.column.id === 'lastUpdated' ? 'hidden lg:table-cell' : '';
   const alignClass = header.column.id === 'actions' ? 'text-center' : '';
   
-  return `${baseClasses} ${paddingClass} ${hiddenClass} ${alignClass}`.trim();
+  return `${baseClasses} ${paddingClass} ${widthClass} ${hiddenClass} ${alignClass}`.trim();
 };
 
 const getCellClassName = (cell: Cell<Workflow, unknown>, index: number) => {
   const baseClasses = 'h-16 border-b border-[rgba(9,9,11,0.08)] align-middle';
   const paddingClass = index === 1 ? 'px-2 py-4' : 'p-4';
+  const widthClass = cell.column.id === 'name' ? 'w-1/2' : '';
   const hiddenClass = cell.column.id === 'lastUpdated' ? 'hidden lg:table-cell' : '';
   
-  return `${baseClasses} ${paddingClass} ${hiddenClass}`.trim();
+  return `${baseClasses} ${paddingClass} ${widthClass} ${hiddenClass}`.trim();
 };
 
 
@@ -177,7 +179,7 @@ export const WorkflowsTable = ({ workflows, sortOption, isLoading = false }: Wor
         <tbody className="bg-white">
           {isLoading ? (
             <>
-              {Array.from({ length: 8 }).map((_, i) => (
+              {Array.from({ length: 12 }).map((_, i) => (
                 <TableSkeletonRow key={i} />
               ))}
             </>
