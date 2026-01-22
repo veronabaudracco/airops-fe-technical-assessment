@@ -9,10 +9,8 @@ interface DialogProps {
   title?: string;
   showCloseButton?: boolean;
   onConfirm?: () => void;
-  cancelLabel?: string;
   confirmLabel?: string;
   confirmVariant?: 'primary' | 'danger';
-  actionsAlignment?: 'start' | 'center' | 'end';
   className?: string;
 }
 
@@ -23,10 +21,8 @@ export const Dialog = ({
   title,
   showCloseButton = true,
   onConfirm,
-  cancelLabel = 'Cancel',
   confirmLabel = 'Save',
   confirmVariant = 'primary',
-  actionsAlignment = 'end',
   className = '',
 }: DialogProps) => {
   if (!isOpen) return null;
@@ -60,12 +56,12 @@ export const Dialog = ({
         )}
         {children}
         {onConfirm && (
-          <div className={`flex items-center justify-${actionsAlignment} gap-2 mt-6`}>
+          <div className={`flex items-center justify-center gap-2 mt-6`}>
             <Button
               onClick={onClose}
               className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors text-sm font-medium text-system-black"
             >
-              {cancelLabel}
+              Cancel
             </Button>
             <Button onClick={onConfirm} className={confirmButtonClass}>
               {confirmLabel}

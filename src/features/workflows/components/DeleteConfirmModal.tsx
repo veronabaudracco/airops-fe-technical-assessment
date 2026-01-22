@@ -26,7 +26,6 @@ export const DeleteConfirmModal = ({
       onConfirm={handleConfirm}
       confirmLabel="Delete"
       confirmVariant="danger"
-      actionsAlignment="center"
     >
       <div className="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-red-100 rounded-full">
         <AlertTriangle className="w-6 h-6 text-red-600" />
