@@ -19,8 +19,11 @@ export interface Tag {
   color: string;
 }
 
-export type SortOption =
-  | 'lastUpdated-desc'
-  | 'lastUpdated-asc'
-  | 'name-asc'
-  | 'name-desc';
+export const SORT_OPTIONS = {
+  LAST_UPDATED_DESC: 'lastUpdated-desc',
+  LAST_UPDATED_ASC: 'lastUpdated-asc',
+  NAME_ASC: 'name-asc',
+  NAME_DESC: 'name-desc',
+} as const;
+
+export type SortOption = typeof SORT_OPTIONS[keyof typeof SORT_OPTIONS];

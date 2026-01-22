@@ -1,0 +1,19 @@
+import type { Tag } from '../types/workflow';
+
+interface TagBadgeProps {
+  tag: Tag;
+}
+
+export const TagBadge = ({ tag }: TagBadgeProps) => {
+  return (
+    <div className="inline-flex items-center justify-center gap-2 h-[30px] px-2.5 py-[5px] bg-white border border-[rgba(9,9,11,0.08)] rounded-[38px]">
+      <div
+        className="w-2 h-2 rounded-[2px]"
+        style={{ backgroundColor: tag.color }}
+      />
+      <p className="text-[13px] font-semibold text-[#09090B]">
+        {tag.name}
+      </p>
+    </div>
+  );
+};
