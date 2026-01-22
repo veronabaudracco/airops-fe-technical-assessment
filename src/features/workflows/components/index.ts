@@ -8,5 +8,3 @@ export * from './WorkflowsList';
 export * from './WorkflowsTable';
 export * from './WorkflowTags';
 
-// Re-export types for convenience
-export type { Workflow, WorkflowType, Tag, SortOption, WorkflowsResponse } from '../types';

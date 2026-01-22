@@ -36,9 +36,7 @@ export function uiReducer(state: UIState, action: UIAction): UIState {
       return { ...state, deletingWorkflow: action.payload };
     case "delete/close":
       return { ...state, deletingWorkflow: null };
-    default: {
-      const _exhaustive: never = action;
+    default:
       return state;
-    }
   }
 }

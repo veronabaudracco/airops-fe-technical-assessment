@@ -1,4 +1,4 @@
-import { useState, ReactNode, ReactElement, cloneElement } from 'react';
+import { useState, ReactNode, cloneElement, isValidElement, ReactElement } from 'react';
 import { Sidebar } from './Sidebar';
 
 interface LayoutProps {
@@ -13,9 +13,11 @@ export const Layout = ({ children }: LayoutProps) => {
   };
 
   // Clone children to inject onMobileMenuToggle prop
-  const childrenWithProps = typeof children === 'object' && children !== null 
-    ? cloneElement(children as ReactElement, { onMobileMenuToggle: handleMobileMenuToggle })
-    : children;
+  const childrenWithProps = isValidElement(children)
+  ? cloneElement(children as ReactElement<{ onMobileMenuToggle?: () => void }>, { 
+      onMobileMenuToggle: handleMobileMenuToggle 
+    })
+  : children;
 
   return (
     <div className="min-h-screen bg-white">
