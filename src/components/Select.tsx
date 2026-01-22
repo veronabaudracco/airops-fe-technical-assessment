@@ -33,7 +33,7 @@ export const Select = ({ value, onChange, options, placeholder = "Select", class
 
       <SelectPrimitive.Portal>
         <SelectPrimitive.Content
-          className="relative z-50 min-w-[200px] overflow-hidden rounded-md border bg-white shadow-lg"
+          className="relative z-50 min-w-[200px] overflow-hidden rounded-md border border-gray-200 bg-white shadow-lg"
           position="popper"
         >
           <SelectPrimitive.Viewport className="p-1">

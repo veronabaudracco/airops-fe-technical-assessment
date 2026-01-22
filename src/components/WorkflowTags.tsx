@@ -13,7 +13,7 @@ export const WorkflowTags = ({ tags }: WorkflowTagsProps) => {
   }
 
   return (
-    <div className="inline-flex items-center justify-center gap-2 h-[30px] px-2.5 py-[5px] bg-white border border-[rgba(9,9,11,0.08)] rounded-[38px]">
+    <div className="inline-flex items-center justify-center gap-2 h-[30px] px-2.5 py-[5px] bg-white border border-system-black-8 rounded-[38px]">
       <div className="flex items-center gap-1">
         {tags.slice(0, 2).map((tag, idx) => (
           <div
