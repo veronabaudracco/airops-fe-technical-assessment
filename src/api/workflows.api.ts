@@ -12,7 +12,6 @@ export const executeWorkflow = async (
 
   const response = await sdk.apps.execute({
     appId: airOpsConfig.workflowId,
-    version: 1,
     payload: { inputs },
   });
 

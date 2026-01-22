@@ -1,6 +1,6 @@
 import type { Workflow } from '../types/workflow';
 import { ActionButtons,WorkflowTags } from '.';
-import { formatLastUpdated, parsePictographicText } from '../lib/utils';
+import { getLastUpdatedLabel, parsePictographicText } from '../lib/utils';
 
 interface WorkflowCardProps {
   workflow: Workflow;
@@ -33,7 +33,7 @@ export const WorkflowCard = ({ workflow }: WorkflowCardProps) => {
       )}
 
       <div className="text-xs font-normal text-[#808593]">
-        Updated {formatLastUpdated(workflow.lastUpdated)}
+        Updated {getLastUpdatedLabel(workflow.lastUpdated)}
       </div>
     </div>
   );

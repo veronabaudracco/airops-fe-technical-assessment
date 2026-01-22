@@ -18,7 +18,7 @@ interface AirOpsConfig {
     userId: import.meta.env.VITE_AIROPS_USER_ID,
   };
   export const getWorkflowInputs = (): WorkflowInputs => ({
-    count: parseInt(import.meta.env.VITE_WORKFLOW_COUNT || '10', 10),
+    count: 10,
   });
 
   

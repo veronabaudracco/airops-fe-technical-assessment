@@ -1,6 +1,7 @@
 import type { Workflow, SortOption } from '../types/workflow';
 import { WorkflowsTable } from './WorkflowsTable';
 import { WorkflowCardList } from './WorkflowCardList';
+import { FeedbackMessage } from './FeedbackMessage';
 
 interface WorkflowsListProps {
   workflows: Workflow[];
@@ -8,16 +9,14 @@ interface WorkflowsListProps {
   isLoading?: boolean;
 }
 
-const EmptyState = () => (
-  <div className="flex flex-col items-center justify-center min-h-[400px] text-gray-500 bg-white rounded-lg border border-gray-200">
-    <p className="text-lg font-medium">No workflows found</p>
-    <p className="text-sm mt-2 text-gray-400">Try adjusting your search or filters</p>
-  </div>
-);
-
 export const WorkflowsList = ({ workflows, sortOption, isLoading = false }: WorkflowsListProps) => {
   if (!isLoading && workflows.length === 0) {
-    return <EmptyState />;
+    return (
+      <FeedbackMessage
+        title="No workflows found"
+        message="Try adjusting your search or filters"
+      />
+    );
   }
 
   return (

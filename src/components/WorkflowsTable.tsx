@@ -12,7 +12,7 @@ import {
 } from '@tanstack/react-table';
 import type { Workflow, SortOption, WorkflowType, Tag } from '../types/workflow';
 import { WorkflowTags, ActionButtons, Skeleton } from '.';
-import { formatLastUpdated, parsePictographicText } from '../lib/utils';
+import { getLastUpdatedLabel, parsePictographicText } from '../lib/utils';
 
 interface WorkflowsTableProps {
   workflows: Workflow[];
@@ -41,7 +41,7 @@ const TagsCell = ({ tags }: { tags: Tag[] }) => <WorkflowTags tags={tags} />;
 
 const LastUpdatedCell = ({ timestamp }: { timestamp: number }) => (
   <p className="text-[13px] font-normal text-[#808593]">
-    {formatLastUpdated(timestamp)}
+    {getLastUpdatedLabel(timestamp)}
   </p>
 );
 
