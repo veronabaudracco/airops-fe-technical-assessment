@@ -4,26 +4,28 @@ import { getLastUpdatedLabel, parsePictographicText } from '../lib/utils';
 
 interface WorkflowCardProps {
   workflow: Workflow;
+  onEdit: () => void;
+  onDelete: () => void;
 }
 
-export const WorkflowCard = ({ workflow }: WorkflowCardProps) => {
+export const WorkflowCard = ({ workflow, onEdit, onDelete }: WorkflowCardProps) => {
   const { pictograph, text } = parsePictographicText(workflow.name);
 
   return (
-    <div className="bg-white border border-[rgba(9,9,11,0.08)] rounded-lg p-4 hover:bg-gray-50 transition-colors">
+    <div className="bg-white border border-system-black-8 rounded-lg p-4 hover:bg-gray-50 transition-colors">
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex items-center gap-3 flex-1 min-w-0">
           {pictograph && <span className="text-lg leading-none flex-shrink-0">{pictograph}</span>}
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm font-medium text-[#09090B] truncate">
+            <h3 className="text-sm font-medium text-system-black truncate">
               {text}
             </h3>
-            <p className="text-xs font-normal text-[#868686] mt-0.5">
+            <p className="text-xs font-normal text-text-grey-light mt-0.5">
               {workflow.type === 'workflow' ? 'Workflow' : 'Agent'}
             </p>
           </div>
         </div>
-        <ActionButtons />
+        <ActionButtons onEdit={onEdit} onDelete={onDelete} />
       </div>
 
       {workflow.tags.length > 0 && (
@@ -32,7 +34,7 @@ export const WorkflowCard = ({ workflow }: WorkflowCardProps) => {
         </div>
       )}
 
-      <div className="text-xs font-normal text-[#808593]">
+      <div className="text-xs font-normal text-system-grey-500">
         Updated {getLastUpdatedLabel(workflow.lastUpdated)}
       </div>
     </div>

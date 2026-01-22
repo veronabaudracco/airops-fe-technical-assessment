@@ -23,7 +23,7 @@ export const WorkflowTags = ({ tags }: WorkflowTagsProps) => {
           />
         ))}
       </div>
-      <p className="text-[13px] font-semibold text-[#09090B]">
+      <p className="text-xs font-semibold text-system-black">
         {tags.length} tags
       </p>
     </div>

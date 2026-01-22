@@ -4,8 +4,15 @@ import {WorkflowCard,  Skeleton } from '.';
 interface WorkflowCardListProps {
   workflows: Workflow[];
   isLoading?: boolean;
+  onEdit: (workflow: Workflow) => void;
+  onDelete: (workflow: Workflow) => void;
 }
-export const WorkflowCardList = ({ workflows, isLoading = false }: WorkflowCardListProps) => {
+export const WorkflowCardList = ({
+  workflows,
+  isLoading = false,
+  onEdit,
+  onDelete,
+}: WorkflowCardListProps) => {
   if (isLoading) {
     return (
       <div className="space-y-3">
@@ -23,7 +30,12 @@ export const WorkflowCardList = ({ workflows, isLoading = false }: WorkflowCardL
   return (
     <div className="space-y-3">
       {workflows.map((workflow) => (
-        <WorkflowCard key={workflow.id} workflow={workflow} />
+        <WorkflowCard
+          key={workflow.id}
+          workflow={workflow}
+          onEdit={() => onEdit(workflow)}
+          onDelete={() => onDelete(workflow)}
+        />
       ))}
     </div>
   );

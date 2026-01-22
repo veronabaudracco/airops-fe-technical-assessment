@@ -13,6 +13,8 @@ interface UseWorkflowsReturn {
   isLoading: boolean;
   error: string | null;
   refetch: () => void;
+  updateWorkflow: (id: number, updates: Partial<Workflow>) => void;
+  deleteWorkflow: (id: number) => void;
 }
 
 export const useWorkflows = ({
@@ -46,9 +48,21 @@ export const useWorkflows = ({
     loadWorkflows();
   }, [loadWorkflows]);
 
+  const updateWorkflow = useCallback((id: number, updates: Partial<Workflow>) => {
+    setRawWorkflows((prev) =>
+      prev.map((workflow) =>
+        workflow.id === id ? { ...workflow, ...updates } : workflow
+      )
+    );
+  }, []);
+
+  const deleteWorkflow = useCallback((id: number) => {
+    setRawWorkflows((prev) => prev.filter((workflow) => workflow.id !== id));
+  }, []);
+
   const workflows = useMemo(() => {
     return filterWorkflows(rawWorkflows, debouncedSearchQuery);
   }, [rawWorkflows, debouncedSearchQuery]);
 
-  return { workflows, isLoading, error, refetch };
+  return { workflows, isLoading, error, refetch, updateWorkflow, deleteWorkflow };
 };

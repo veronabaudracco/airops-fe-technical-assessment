@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { useWorkflows } from './hooks/useWorkflows';
-import { Layout } from './components/Layout';
-import { WorkflowsToolbar } from './components/WorkflowsToolbar';
-import { WorkflowsList } from './components/WorkflowsList';
-import { FeedbackMessage } from './components/FeedbackMessage';
-import { SortOption } from './types/workflow';
+import {Layout, WorkflowsToolbar, WorkflowsList, FeedbackMessage, EditWorkflowModal, DeleteConfirmModal} from './components/index'
+import { SortOption, Workflow } from './types/workflow';
 
 interface AppContentProps {
   onMobileMenuToggle?: () => void;
@@ -13,8 +10,10 @@ interface AppContentProps {
 const AppContent = ({ onMobileMenuToggle }: AppContentProps) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState<SortOption>('lastUpdated-desc');
+  const [editingWorkflow, setEditingWorkflow] = useState<Workflow | null>(null);
+  const [deletingWorkflow, setDeletingWorkflow] = useState<Workflow | null>(null);
 
-  const { workflows, isLoading, error, refetch } = useWorkflows({
+  const { workflows, isLoading, error, refetch, updateWorkflow, deleteWorkflow } = useWorkflows({
     searchQuery,
   });
 
@@ -36,9 +35,33 @@ const AppContent = ({ onMobileMenuToggle }: AppContentProps) => {
             action={{ label: 'Retry', onClick: refetch }}
           />
         ) : (
-          <WorkflowsList workflows={workflows} sortOption={sortOption} isLoading={isLoading} />
+          <WorkflowsList
+            workflows={workflows}
+            sortOption={sortOption}
+            isLoading={isLoading}
+            onEdit={setEditingWorkflow}
+            onDelete={setDeletingWorkflow}
+          />
         )}
       </main>
+
+      <EditWorkflowModal
+        workflow={editingWorkflow}
+        isOpen={!!editingWorkflow}
+        onClose={() => setEditingWorkflow(null)}
+        onSave={updateWorkflow}
+      />
+
+      <DeleteConfirmModal
+        isOpen={!!deletingWorkflow}
+        workflowName={deletingWorkflow?.name || ''}
+        onClose={() => setDeletingWorkflow(null)}
+        onConfirm={() => {
+          if (deletingWorkflow) {
+            deleteWorkflow(deletingWorkflow.id);
+          }
+        }}
+      />
     </>
   );
 };

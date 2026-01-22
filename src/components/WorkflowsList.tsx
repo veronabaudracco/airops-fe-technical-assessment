@@ -7,9 +7,17 @@ interface WorkflowsListProps {
   workflows: Workflow[];
   sortOption: SortOption;
   isLoading?: boolean;
+  onEdit: (workflow: Workflow) => void;
+  onDelete: (workflow: Workflow) => void;
 }
 
-export const WorkflowsList = ({ workflows, sortOption, isLoading = false }: WorkflowsListProps) => {
+export const WorkflowsList = ({
+  workflows,
+  sortOption,
+  isLoading = false,
+  onEdit,
+  onDelete,
+}: WorkflowsListProps) => {
   if (!isLoading && workflows.length === 0) {
     return (
       <FeedbackMessage
@@ -23,12 +31,23 @@ export const WorkflowsList = ({ workflows, sortOption, isLoading = false }: Work
     <div className="bg-white overflow-hidden">
       {/* Mobile: Cards */}
       <div className="md:hidden">
-        <WorkflowCardList workflows={workflows} isLoading={isLoading} />
+        <WorkflowCardList
+          workflows={workflows}
+          isLoading={isLoading}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       </div>
 
       {/* Desktop: Table */}
       <div className="hidden md:block">
-        <WorkflowsTable workflows={workflows} sortOption={sortOption} isLoading={isLoading} />
+        <WorkflowsTable
+          workflows={workflows}
+          sortOption={sortOption}
+          isLoading={isLoading}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
       </div>
     </div>
   );

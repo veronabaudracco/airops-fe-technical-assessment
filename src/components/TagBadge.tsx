@@ -11,7 +11,7 @@ export const TagBadge = ({ tag }: TagBadgeProps) => {
         className="w-2 h-2 rounded-[2px]"
         style={{ backgroundColor: tag.color }}
       />
-      <p className="text-[13px] font-semibold text-[#09090B]">
+      <p className="text-xs font-semibold text-system-black">
         {tag.name}
       </p>
     </div>
