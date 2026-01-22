@@ -1,4 +1,4 @@
-import { stripPictographs } from '../lib/utils';
+import { parsePictographicText } from '../lib/utils';
 import type { Workflow, SortOption } from '../types/workflow';
 
 const normalize = (value: string) => value.trim().toLowerCase();
@@ -25,16 +25,16 @@ export const sortWorkflows = (
           return a.lastUpdated - b.lastUpdated;
   
         case 'name-asc': {
-          const nameA = stripPictographs(a.name);
-          const nameB = stripPictographs(b.name);
+          const nameA = parsePictographicText(a.name).text;
+          const nameB = parsePictographicText(b.name).text;
           return nameA.localeCompare(nameB, undefined, {
             sensitivity: 'base',
           });
         }
   
         case 'name-desc': {
-          const nameA = stripPictographs(a.name);
-          const nameB = stripPictographs(b.name);
+          const nameA = parsePictographicText(a.name).text;
+          const nameB = parsePictographicText(b.name).text;
           return nameB.localeCompare(nameA, undefined, {
             sensitivity: 'base',
           });

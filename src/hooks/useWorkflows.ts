@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchWorkflows } from '../services/workflows.service';
 import { useDebounce } from './useDebounce';
-import { filterWorkflows, sortWorkflows } from '../utils/workflows';
-import type { Workflow, WorkflowsResponse, SortOption } from '../types/workflow';
+import { filterWorkflows } from '../utils/workflows';
+import type { Workflow, WorkflowsResponse } from '../types/workflow';
 
 interface UseWorkflowsParams {
   searchQuery: string;
-  sortOption: SortOption;
 }
 
 interface UseWorkflowsReturn {
@@ -18,7 +17,6 @@ interface UseWorkflowsReturn {
 
 export const useWorkflows = ({
   searchQuery,
-  sortOption,
 }: UseWorkflowsParams): UseWorkflowsReturn => {
   const [rawWorkflows, setRawWorkflows] = useState<Workflow[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,9 +47,8 @@ export const useWorkflows = ({
   }, [loadWorkflows]);
 
   const workflows = useMemo(() => {
-    const filtered = filterWorkflows(rawWorkflows, debouncedSearchQuery);
-    return sortWorkflows(filtered, sortOption);
-  }, [rawWorkflows, debouncedSearchQuery, sortOption]);
+    return filterWorkflows(rawWorkflows, debouncedSearchQuery);
+  }, [rawWorkflows, debouncedSearchQuery]);
 
   return { workflows, isLoading, error, refetch };
 };
