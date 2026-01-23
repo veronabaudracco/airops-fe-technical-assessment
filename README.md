@@ -12,7 +12,7 @@ The goal of this exercise is to demonstrate code quality, UI accuracy, and clear
 - TypeScript
 - Vite
 - Tailwind CSS
-- TanStack Query (server state management)
+- TanStack Table
 - Radix UI (accessible primitives)
 - shadcn/ui (composed UI components)
 - date-fns (date formatting utilities)
